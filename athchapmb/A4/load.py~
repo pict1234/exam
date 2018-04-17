@@ -1,0 +1,29 @@
+from pymongo import MongoClient
+from datetime import datetime
+
+def loadFF(filename):
+	conn = MongoClient('127.0.0.1',27442)
+	db=conn.test.a4
+
+	fd = open(filename,'r').read().strip().split("\n")
+	for line in fd:
+		record = line.strip().split(',') #he chukla
+		print record
+
+		record=[int(e) for e in record]
+		post={"PID":record[0],"time":str(datetime.now()),"dataItem":record[1]}
+		db.insert_one(post)
+		
+loadFF('data.txt')
+
+
+
+
+
+
+
+
+
+
+
+

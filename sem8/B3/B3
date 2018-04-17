@@ -1,0 +1,333 @@
+**MainActivity.java
+
+
+package com.example.shalini.calculator;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
+{
+    Button add,sub,mul,div,sin,cos,tan,sqrt,save,recall,clear;
+    private TextView res;
+    private EditText num1,num2;
+    double saved_value;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        init();
+    }
+
+    public void init()
+    {
+        add=(Button)findViewById(R.id.add);
+        sub=(Button)findViewById(R.id.sub);
+        mul=(Button)findViewById(R.id.mul);
+        div =(Button)findViewById(R.id.div);
+        sin=(Button)findViewById(R.id.sin);
+        cos=(Button)findViewById(R.id.cos);
+        tan=(Button)findViewById(R.id.tan);
+        sqrt=(Button)findViewById(R.id.sqrt);
+        save=(Button)findViewById(R.id.save);
+        recall=(Button)findViewById(R.id.recall);
+        clear=(Button)findViewById(R.id.clear);
+        res=(TextView)findViewById(R.id.res);
+        num1=(EditText)findViewById(R.id.num1);
+        num2=(EditText)findViewById(R.id.num2);
+        saved_value=0;
+
+        add.setOnClickListener(this);
+        sub.setOnClickListener(this);
+        mul.setOnClickListener(this);
+        div.setOnClickListener(this);
+        sin.setOnClickListener(this);
+        cos.setOnClickListener(this);
+        tan.setOnClickListener(this);
+        save.setOnClickListener(this);
+        recall.setOnClickListener(this);
+        clear.setOnClickListener(this);
+        sqrt.setOnClickListener(this);
+    }
+
+    public void onClick(View v)
+    {
+        String number1=num1.getText().toString();
+        String number2=num2.getText().toString();
+
+        switch (v.getId())
+        {
+            case R.id.add:
+                double add_ans=Double.parseDouble(number1)+Double.parseDouble(number2);
+                res.setText(String.valueOf(add_ans));
+                break;
+            case R.id.sub:
+                double sub_ans=Double.parseDouble(number1)-Double.parseDouble(number2);
+                res.setText(String.valueOf(sub_ans));
+                break;
+            case R.id.mul:
+                double mul_ans=Double.parseDouble(number1)*Double.parseDouble(number2);
+                res.setText(String.valueOf(mul_ans));
+                break;
+            case R.id.div:
+                double div_ans=Double.parseDouble(number1)/Double.parseDouble(number2);
+                res.setText(String.valueOf(div_ans));
+                break;
+            case R.id.sin:
+                num2.setText(" ");
+                double sin_ans=Math.sin(Double.parseDouble(number1));
+                res.setText(String.valueOf(sin_ans));
+                break;
+            case R.id.cos:
+                num2.setText(" ");
+                double cos_ans=Math.cos(Double.parseDouble(number1));
+                res.setText(String.valueOf(cos_ans));
+                break;
+            case R.id.tan:
+                num2.setText(" ");
+                double tan_ans=Math.tan(Double.parseDouble(number1));
+                res.setText(String.valueOf(tan_ans));
+                break;
+            case R.id.sqrt:
+                double sqrt_ans=Math.sqrt(Double.parseDouble(number1));
+                res.setText(String.valueOf(sqrt_ans));
+                break;
+            case R.id.save:
+                String value=res.getText().toString();
+                saved_value = Double.parseDouble(value);
+                num2.setText(" ");
+                num1.setText(" ");
+                res.setText("RESULT");
+                break;
+            case R.id.recall:
+                num1.setText(String.valueOf(saved_value));
+                break;
+            case R.id.clear:
+                num1.setText(" ");
+                num2.setText(" ");
+                res.setText("Result");
+                break;
+
+
+        }
+    }
+}
+
+
+**activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shalini.calculator.MainActivity">
+
+    <Button
+        android:id="@+id/div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="17dp"
+        android:layout_y="422dp"
+        android:text="Div"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="281dp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="12dp"
+        android:layout_y="347dp"
+        android:text="Save"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <Button
+        android:id="@+id/sqrt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="8dp"
+        android:layout_y="294dp"
+        android:text="Sqrt"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <Button
+        android:id="@+id/tan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="113dp"
+        android:layout_y="294dp"
+        android:text="Tan"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <Button
+        android:id="@+id/mul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="121dp"
+        android:layout_y="359dp"
+        android:text="Mul"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <Button
+        android:id="@+id/sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="135dp"
+        android:layout_y="434dp"
+        android:text="Sub"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="239dp"
+        android:layout_y="296dp"
+        android:text="Add"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="211dp" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="239dp"
+        android:layout_y="373dp"
+        android:text="Clear"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="428dp" />
+
+    <Button
+        android:id="@+id/recall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="241dp"
+        android:layout_y="435dp"
+        android:text="Recall"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="428dp" />
+
+    <Button
+        android:id="@+id/cos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="19dp"
+        android:layout_y="227dp"
+        android:text="Cos"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="281dp" />
+
+    <Button
+        android:id="@+id/sin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="150dp"
+        android:layout_y="225dp"
+        android:text="Sin"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="281dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="12dp"
+        android:text="Enter Num 1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="4dp" />
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="94dp"
+        android:layout_height="43dp"
+        android:layout_x="4dp"
+        android:layout_y="38dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="225dp"
+        android:layout_y="10dp"
+        android:text="Enter num 2"
+        tools:layout_editor_absoluteX="236dp"
+        tools:layout_editor_absoluteY="4dp" />
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="95dp"
+        android:layout_height="48dp"
+        android:layout_x="215dp"
+        android:layout_y="44dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <EditText
+        android:id="@+id/res"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="70dp"
+        android:layout_y="172dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="128dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="162dp"
+        android:layout_y="130dp"
+        android:text="Result"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="90dp" />
+
+</AbsoluteLayout>
+
+
+
+Calculator.java
+
+public class Calculator
+{
+
+	public int add(int x,int y)
+	{
+		return x+y;
+	}
+}
+
+
+ExampleUnitTest.java
+
+@Test
+public void our_addition() throws Exception
+{
+	int x=10;
+	int y=20;
+	Calculator c=new Calculator();
+	int ans=c.add(x,y);
+	assertEquals(30,ans);
+
+}

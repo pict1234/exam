@@ -1,0 +1,12 @@
+<html>
+<head> Check Plag </head>
+<body>
+<form action="." method="POST">
+<duv>
+<textarea name = "val"></textarea>
+</div>
+<div>
+<input type = "Submit" value = "Cogitate">
+</form>
+</body>
+</html>
